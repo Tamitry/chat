@@ -14,7 +14,7 @@ import { MessageModule } from './message/message.module';
       username: 'postgres',
       password: '123Rombik321',
       database: 'chat',
-      entities: [join(__dirname, '**/*.entities.ts')],
+      entities: [join(__dirname, '**/*.entity.ts')],
       synchronize: true,
       autoLoadEntities: true
     }),
