@@ -10,4 +10,8 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>
   ) { }
 
+  async getUserById(id: number) {
+    const user = <User>await this.userRepository.findOne(id);
+    return user;
+  }
 }
