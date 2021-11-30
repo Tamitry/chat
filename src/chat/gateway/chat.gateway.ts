@@ -1,4 +1,11 @@
-import { ConnectedSocket, MessageBody, OnGatewayConnection, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import {
+  ConnectedSocket
+  , MessageBody
+  , OnGatewayConnection
+  , SubscribeMessage
+  , WebSocketGateway
+  , WebSocketServer
+} from '@nestjs/websockets';
 import { Server } from 'http';
 import { Socket } from 'socket.io';
 import { ChatService } from './../chat.service';
