@@ -1,11 +1,16 @@
-import { CacheModule, Inject, Module, OnModuleInit } from '@nestjs/common';
+import { CacheInterceptor, CacheModule, Inject, Module, OnModuleInit } from '@nestjs/common';
 import { RedisCacheService } from './redis-cache.service';
 import * as redisStore from 'cache-manager-redis-store';
 import { CACHE_MANAGER } from '@nestjs/common';
 import { Cache } from 'cache-manager';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
-  providers: [RedisCacheService],
+  providers: [RedisCacheService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor
+    }],
   exports: [RedisCacheModule],
   imports: [
     CacheModule.registerAsync({
@@ -16,6 +21,9 @@ import { Cache } from 'cache-manager';
           port: process.env.REDIS_PORT
         }
       },
+    }),
+    CacheModule.register({
+      ttl: 60 * 60
     })
   ]
 })

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatModule } from './chat/chat.module';
 import { join } from 'path/posix';
@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { MessageModule } from './message/message.module';
 import { RedisCacheModule } from './redis-cache/redis-cache.module';
 import { ConfigModule } from '@nestjs/config';
+import { RoomsModule } from './rooms/rooms.module';
 
 @Module({
   imports: [ChatModule,
@@ -20,10 +21,12 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
       autoLoadEntities: true
     }),
+    CacheModule.register(),
     ConfigModule.forRoot(),
     UserModule,
     MessageModule,
     RedisCacheModule,
+    RoomsModule,
   ],
   providers: [],
 })

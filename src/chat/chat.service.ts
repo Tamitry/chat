@@ -21,11 +21,11 @@ export class ChatService {
     return user;
   }
 
-  async saveMessage(content: string, author: User) {
-    return this.messageService.saveMessage(content, author);
+  async saveMessage(content: string, author: User, roomId: number) {
+    return this.messageService.saveMessage(content, author, roomId);
   }
 
-  async getAllMessages() {
-    return this.messageService.getAllMessages();
+  async getTopMessages(roomId: number, limit: number = 25) {
+    return this.messageService.getMessageTop(roomId, limit);
   }
 }

@@ -9,10 +9,14 @@ export class RedisCacheService {
   ) { }
 
   async get(key) {
+    console.log('Get method from cache');
+
     await this.cache.get(key);
   }
 
   async set(key, value) {
+    console.log('Set method from cache');
+
     await this.cache.set(key, value);
   }
 }
